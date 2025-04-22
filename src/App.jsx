@@ -7,13 +7,13 @@ import Event from './components/Event';
 
 import DonationFilter from './components/DonationFilter';
 import Sidebar from './components/Sidebar'; 
-import TopBar from './components/TopBar';
+import Topbar from './components/Topbar';
 const App = () => {
   return (
     <Router>
        <div className="flex min-h-screen flex-col">
         
-        <TopBar/>
+        <Topbar/>
         
       <div className="flex min-h-screen">
         <Sidebar />
