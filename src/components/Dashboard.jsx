@@ -39,7 +39,7 @@ const Dashboard = () => {
       if (startDate && endDate) {
         return donationDate >= startDate && donationDate <= endDate;
       }
-      return true;  // If no filter is applied, show all donations
+      return true;  
     });
   };
 
@@ -47,7 +47,7 @@ const Dashboard = () => {
     <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
   
       
-      <DonationFilter />
+      
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, i) => (
@@ -86,13 +86,13 @@ const Dashboard = () => {
                 <td className="p-2">Education</td>
                 <td className="p-2">April 20, 2025</td>
               </tr>
-              {/* More rows can be added here */}
+              
             </tbody>
           </table>
         </div>
       </div>
 
-      {/* View Donation History Button */}
+      
       <button
         onClick={handleOpenModal}
         className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-8"
@@ -100,11 +100,11 @@ const Dashboard = () => {
         View Donation History
       </button>
 
-      {/* Modal for Donation History */}
+      
       <ReactModal isOpen={showModal} onRequestClose={handleCloseModal} ariaHideApp={false} className="modal-content">
         <h2 className="text-lg font-semibold mb-4 text-gray-700">Donation History</h2>
 
-        {/* Date Filter */}
+        
         <div className="mb-4 flex gap-4">
           <div>
             <label className="text-sm text-gray-600">Start Date</label>
@@ -127,7 +127,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Filtered Donations Table */}
+       
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead className="text-gray-600 border-b">
