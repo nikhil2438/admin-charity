@@ -56,7 +56,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link
+            {/* <Link
               to="/donation-filter"
               onClick={handleLinkClick}
               className={`block py-2 px-4 rounded-md ${
@@ -64,7 +64,7 @@ const Sidebar = () => {
               }`}
             >
               Donation Filter
-            </Link>
+            </Link> */}
           </li>
           <li>
             <Link

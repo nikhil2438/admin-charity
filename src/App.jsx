@@ -5,7 +5,7 @@ import DonationHistory from './components/DonationHistory';
 import TopDonors from './components/TopDonors';
 import Event from './components/Event';
 
-import DonationFilter from './components/DonationFilter';
+
 import Sidebar from './components/Sidebar'; 
 import Topbar from './components/Topbar';
 const App = () => {
@@ -24,7 +24,7 @@ const App = () => {
             <Route path="/top-donors" element={<TopDonors />} />
             <Route path="/event" element={<Event />} />
             
-            <Route path="/donation-filter" element={<DonationFilter />} />
+            {/* <Route path="/donation-filter" element={<DonationFilter />} /> */}
           </Routes>
         </div>
       </div>

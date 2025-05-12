@@ -3,6 +3,7 @@ import React from 'react';
 import logo from '../assets/logo.png';
 import Event from './Event';
 import TopDonors from './TopDonors';
+import DonationHistory from './DonationHistory';
 
 const stats = [
   { title: "Total Donations", value: "₹1,25,000" },
@@ -27,7 +28,7 @@ const Dashboard = () => {
         <Event />
       </div>
 
-      <TopDonors />
+      <DonationHistory />
     </div>
   );
 };
