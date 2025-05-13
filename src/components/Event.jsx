@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const UpcomingEvents = () => {
+const Events = () => {
   const [events, setEvents] = useState([
     { title: "Pooja at City Hospital", date: "April 25, 2025" },
     { title: "School Yagna Ceremony", date: "April 30, 2025" },
@@ -25,7 +25,7 @@ const UpcomingEvents = () => {
     <div className="bg-white rounded-2xl shadow-md p-4 mb-6">
       <h2 className="text-lg font-semibold mb-4 text-gray-700">Upcoming Events</h2>
 
-      {/* Event List */}
+      
       <ul className="space-y-2 mb-6">
         {events.map((event, index) => (
           <li key={index} className="text-gray-600">
@@ -34,7 +34,7 @@ const UpcomingEvents = () => {
         ))}
       </ul>
 
-      {/* Add Event Form */}
+      
       <form onSubmit={handleAddEvent} className="space-y-2">
         <input
           type="text"
@@ -64,5 +64,5 @@ const UpcomingEvents = () => {
   );
 };
 
-export default UpcomingEvents;
+export default Events;
  

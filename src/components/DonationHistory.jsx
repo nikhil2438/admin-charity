@@ -18,7 +18,7 @@ const DonationHistory = () => {
           .map(entry => ({
             name: entry.FullName,
             email: entry.ContactNumber,
-            amountValue: entry.donation.amount, // keep raw value for possible future sorting
+            amountValue: entry.donation.amount,
             amount: `₹${(entry.donation.amount / 100).toLocaleString()}`,
             category: entry.category || 'General',
             date: new Date(entry.donation.createdAt),
@@ -38,10 +38,10 @@ const DonationHistory = () => {
     fetchDonationHistory();
   }, []);
 
-  // Extract unique categories for dropdown
+
   const categories = ['All', ...new Set(donationHistory.map(item => item.category))];
 
-  // Filter logic
+  
   const filteredHistory = donationHistory.filter(donation => {
     const matchesSearch = `${donation.name} ${donation.email} ${donation.category}`
       .toLowerCase()
@@ -60,7 +60,7 @@ const DonationHistory = () => {
     <div className="bg-white rounded-2xl shadow-md p-6">
       <h2 className="text-lg font-semibold mb-4 text-gray-700">Donation History</h2>
 
-      {/* Filters */}
+    
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
         <input
           type="text"

@@ -1,30 +1,9 @@
-// 
-import React, { useEffect } from 'react';
+import React from 'react';
 import logo from '../assets/logo.png';
 import { Menu } from '@headlessui/react';
 import { ChevronDownIcon, UserIcon } from '@heroicons/react/24/solid';
-import { useNavigate } from 'react-router-dom';
 
 const TopBar = () => {
-  const navigate = useNavigate();
-
-  // Optional: redirect if not logged in
-  useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isAdminLoggedIn');
-    if (!isLoggedIn) {
-      navigate('/admin-login');
-    }
-  }, [navigate]);
-
-  const handleLogout = () => {
-    // Clear local storage
-    localStorage.removeItem('isAdminLoggedIn');
-    localStorage.removeItem('adminToken'); // if used
-
-    // Redirect to login
-    navigate('/admin-login');
-  };
-
   return (
     <div className="bg-white text-black flex justify-between items-center shadow-md px-4 py-2">
       <div className="flex items-center gap-4">
@@ -50,6 +29,10 @@ const TopBar = () => {
                   className={`${
                     active ? 'bg-gray-100' : ''
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                  onClick={() => {
+                    // Placeholder: No real navigation or function
+                    console.log('Profile clicked');
+                  }}
                 >
                   Profile
                 </button>
@@ -62,6 +45,10 @@ const TopBar = () => {
                   className={`${
                     active ? 'bg-gray-100' : ''
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                  onClick={() => {
+                    // Placeholder: No real navigation or function
+                    console.log('Settings clicked');
+                  }}
                 >
                   Settings
                 </button>
@@ -71,12 +58,15 @@ const TopBar = () => {
             <Menu.Item>
               {({ active }) => (
                 <button
-                  onClick={handleLogout}
                   className={`${
-                    active ? 'bg-gray-100 text-red-600' : 'text-red-600'
+                    active ? 'bg-gray-100' : ''
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                  onClick={() => {
+                    // Placeholder: No logout logic
+                    console.log('Logout clicked');
+                  }}
                 >
-                  Log Out
+                  Logout
                 </button>
               )}
             </Menu.Item>
