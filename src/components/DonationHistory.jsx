@@ -98,7 +98,7 @@ const DonationHistory = () => {
         </div>
       </div>
 
-      {/* Table */}
+      
       <div className="overflow-x-auto">
         <table className="w-full text-left">
           <thead className="text-gray-600 border-b">
