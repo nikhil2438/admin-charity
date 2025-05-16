@@ -7,7 +7,7 @@ const TopBar = () => {
   return (
     <div className="bg-white text-black flex justify-between items-center shadow-md px-4 py-2">
       <div className="flex items-center gap-4">
-        {/* Logo */}
+        
         <img
           src={logo}
           alt="Maa Siddheshwari Trust"
@@ -15,11 +15,11 @@ const TopBar = () => {
         />
       </div>
 
-      {/* Dropdown Menu for User */}
+    
       <Menu as="div" className="relative inline-block text-left">
         <Menu.Button className="flex items-center gap-2 px-4 py-2 bg-red-800 text-white rounded-md hover:bg-red-700 transition">
           <UserIcon className="w-5 h-5" />
-          <span className="hidden md:inline">Admin</span> {/* Show 'Admin' only on larger screens */}
+          <span className="hidden md:inline">Admin</span> 
           <ChevronDownIcon className="w-4 h-4" />
         </Menu.Button>
 
@@ -32,7 +32,7 @@ const TopBar = () => {
                     active ? 'bg-gray-100' : ''
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   onClick={() => {
-                    // Placeholder: No real navigation or function
+                    
                     console.log('Profile clicked');
                   }}
                 >
@@ -48,7 +48,7 @@ const TopBar = () => {
                     active ? 'bg-gray-100' : ''
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   onClick={() => {
-                    // Placeholder: No real navigation or function
+                  
                     console.log('Settings clicked');
                   }}
                 >
@@ -64,7 +64,7 @@ const TopBar = () => {
                     active ? 'bg-gray-100' : ''
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   onClick={() => {
-                    // Placeholder: No logout logic
+                    
                     console.log('Logout clicked');
                   }}
                 >

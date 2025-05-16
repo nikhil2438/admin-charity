@@ -1,8 +1,9 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
   const navigate = useNavigate();
 
   const [isRegister, setIsRegister] = useState(false);
@@ -66,13 +67,10 @@ const Login = () => {
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || "Login failed");
 
-        // Save user info
-        localStorage.setItem("user", JSON.stringify(data.user));
-        localStorage.setItem("token", data.token);
-
         alert("✅ " + data.message);
 
-        
+        onLoginSuccess(data.user); // Send user to App
+
         navigate("/dashboard");
       } catch (error) {
         alert("❌ " + error.message);
@@ -129,7 +127,7 @@ const Login = () => {
             <label className="text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
-              placeholder="Email address"
+              placeholder="Email"
               className="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-orange-400"
               value={formData.Email}
               onChange={(e) =>
@@ -137,6 +135,7 @@ const Login = () => {
               }
             />
           </div>
+
           <div className="mb-3">
             <label className="text-sm font-medium text-gray-700">Password</label>
             <input
@@ -152,10 +151,12 @@ const Login = () => {
 
           {isRegister && (
             <div className="mb-3">
-              <label className="text-sm font-medium text-gray-700">Confirm Password</label>
+              <label className="text-sm font-medium text-gray-700">
+                Confirm Password
+              </label>
               <input
                 type="password"
-                placeholder="Confirm password"
+                placeholder="Confirm Password"
                 className="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-orange-400"
                 value={formData.ConfirmPassword}
                 onChange={(e) =>
@@ -167,31 +168,21 @@ const Login = () => {
 
           <button
             type="submit"
+            className="w-full bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition duration-200"
             disabled={loading}
-            className={`w-full mt-4 py-2 rounded-lg text-white font-semibold transition duration-200 ${
-              loading
-                ? "bg-orange-300 cursor-not-allowed"
-                : "bg-orange-500 hover:bg-orange-600"
-            }`}
           >
-            {loading
-              ? isRegister
-                ? "Registering..."
-                : "Logging in..."
-              : isRegister
-              ? "Register"
-              : "Login"}
+            {loading ? "Please wait..." : isRegister ? "Register" : "Login"}
           </button>
         </form>
 
-        <p className="mt-4 text-center text-sm text-gray-600">
+        <p className="text-center mt-4 text-sm text-gray-600">
           {isRegister ? "Already have an account?" : "Don't have an account?"}{" "}
-          <button
+          <span
+            className="text-orange-600 cursor-pointer underline"
             onClick={() => setIsRegister(!isRegister)}
-            className="text-orange-600 hover:underline font-medium"
           >
             {isRegister ? "Login" : "Register"}
-          </button>
+          </span>
         </p>
       </div>
     </div>
