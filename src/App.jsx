@@ -7,12 +7,12 @@ import TopDonors from './components/TopDonors';
 import Event from './components/Event';
 import Login from './components/Login';
 
-import Sidebar from './components/Sidebar';  // Import Sidebar
-import Topbar from './components/Topbar';    // Import Topbar
+import Sidebar from './components/Sidebar';
+import Topbar from './components/Topbar';    
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Track sidebar state
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -45,7 +45,7 @@ const App = () => {
           element={
             isAuthenticated ? (
               <div className="flex min-h-screen flex-col">
-                <Topbar toggleSidebar={toggleSidebar} /> {/* Pass toggle function */}
+                <Topbar toggleSidebar={toggleSidebar} /> 
                 <div className="flex flex-1">
                   <Sidebar isOpen={isSidebarOpen} />
                   <div className={`flex-1 p-6 space-y-8 bg-gray-50 ${isSidebarOpen ? 'ml-64' : ''}`}>

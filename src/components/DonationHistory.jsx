@@ -10,7 +10,7 @@ const DonationHistory = () => {
   useEffect(() => {
     const fetchDonationHistory = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/razorpay/donation-history');
+        const response = await fetch('http://localhost:5000/api/razorpay/donation-history');
         const data = await response.json();
 
         const formattedData = data
@@ -18,8 +18,8 @@ const DonationHistory = () => {
           .map(entry => ({
             name: entry.FullName,
             email: entry.ContactNumber,
-            amountValue: entry.donation.amount,
-            amount: `₹${(entry.donation.amount / 100).toLocaleString()}`,
+            amountValue: entry.amount,
+amount: `₹${(entry.amount / 100).toLocaleString()}`,
             category: entry.category || 'General',
             date: new Date(entry.donation.createdAt),
             dateString: new Date(entry.donation.createdAt).toLocaleDateString('en-IN', {
@@ -41,7 +41,7 @@ const DonationHistory = () => {
 
   const categories = ['All', ...new Set(donationHistory.map(item => item.category))];
 
-  
+
   const filteredHistory = donationHistory.filter(donation => {
     const matchesSearch = `${donation.name} ${donation.email} ${donation.category}`
       .toLowerCase()
@@ -60,7 +60,7 @@ const DonationHistory = () => {
     <div className="bg-white rounded-2xl shadow-md p-6">
       <h2 className="text-lg font-semibold mb-4 text-gray-700">Donation History</h2>
 
-    
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
         <input
           type="text"
@@ -98,7 +98,7 @@ const DonationHistory = () => {
         </div>
       </div>
 
-      
+
       <div className="overflow-x-auto">
         <table className="w-full text-left">
           <thead className="text-gray-600 border-b">
@@ -136,4 +136,4 @@ const DonationHistory = () => {
 };
 
 export default DonationHistory;
- 
+
