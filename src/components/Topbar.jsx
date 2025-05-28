@@ -2,12 +2,19 @@ import React from 'react';
 import logo from '../assets/logo.png';
 import { Menu } from '@headlessui/react';
 import { ChevronDownIcon, UserIcon } from '@heroicons/react/24/solid';
+import { useNavigate } from 'react-router-dom';
 
 const TopBar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');  
+    navigate('/login');               
+  };
+
   return (
     <div className="bg-white text-black flex justify-between items-center shadow-md px-4 py-2">
       <div className="flex items-center gap-4">
-        
         <img
           src={logo}
           alt="Maa Siddheshwari Trust"
@@ -15,11 +22,10 @@ const TopBar = () => {
         />
       </div>
 
-    
       <Menu as="div" className="relative inline-block text-left">
         <Menu.Button className="flex items-center gap-2 px-4 py-2 bg-red-800 text-white rounded-md hover:bg-red-700 transition">
           <UserIcon className="w-5 h-5" />
-          <span className="hidden md:inline">Admin</span> 
+          <span className="hidden md:inline">Admin</span>
           <ChevronDownIcon className="w-4 h-4" />
         </Menu.Button>
 
@@ -31,10 +37,7 @@ const TopBar = () => {
                   className={`${
                     active ? 'bg-gray-100' : ''
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  onClick={() => {
-                    
-                    console.log('Profile clicked');
-                  }}
+                  onClick={() => navigate('/profile')}
                 >
                   Profile
                 </button>
@@ -47,10 +50,7 @@ const TopBar = () => {
                   className={`${
                     active ? 'bg-gray-100' : ''
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  onClick={() => {
-                  
-                    console.log('Settings clicked');
-                  }}
+                  onClick={() => console.log('Settings clicked')}
                 >
                   Settings
                 </button>
@@ -62,11 +62,8 @@ const TopBar = () => {
                 <button
                   className={`${
                     active ? 'bg-gray-100' : ''
-                  } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  onClick={() => {
-                    
-                    console.log('Logout clicked');
-                  }}
+                  } group flex w-full items-center rounded-md px-2 py-2 text-sm text-red-600`}
+                  onClick={handleLogout}
                 >
                   Logout
                 </button>
@@ -80,3 +77,4 @@ const TopBar = () => {
 };
 
 export default TopBar;
+ 

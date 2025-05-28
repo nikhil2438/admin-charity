@@ -39,6 +39,7 @@ const Login = ({ onLoginSuccess }) => {
         if (!res.ok) throw new Error(data.message || "Registration failed");
 
         alert("✅ " + data.message);
+
         setFormData({
           FullName: "",
           Email: "",
@@ -47,6 +48,7 @@ const Login = ({ onLoginSuccess }) => {
           ConfirmPassword: "",
           usertype: "User",
         });
+
         setIsRegister(false);
       } catch (error) {
         alert("❌ " + error.message);
@@ -69,8 +71,13 @@ const Login = ({ onLoginSuccess }) => {
 
         alert("✅ " + data.message);
 
-        onLoginSuccess(data.user); // Send user to App
+        
+        localStorage.setItem("userEmail", data.user.Email.toLowerCase());
 
+        // Trigger parent callback if any
+        onLoginSuccess(data.user);
+
+        
         navigate("/dashboard");
       } catch (error) {
         alert("❌ " + error.message);
@@ -88,9 +95,7 @@ const Login = ({ onLoginSuccess }) => {
           <h1 className="text-xl font-semibold text-orange-600 mb-1">
             Welcome to Ma Siddheshwari App
           </h1>
-          <h2 className="text-2xl font-bold text-orange-700">
-            Ma Siddheshwari Trust
-          </h2>
+          <h2 className="text-2xl font-bold text-orange-700">Ma Siddheshwari Trust</h2>
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -103,9 +108,7 @@ const Login = ({ onLoginSuccess }) => {
                   placeholder="Your name"
                   className="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-orange-400"
                   value={formData.FullName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, FullName: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, FullName: e.target.value })}
                 />
               </div>
               <div className="mb-3">
@@ -115,9 +118,7 @@ const Login = ({ onLoginSuccess }) => {
                   placeholder="Mobile number"
                   className="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-orange-400"
                   value={formData.MobileNumber}
-                  onChange={(e) =>
-                    setFormData({ ...formData, MobileNumber: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, MobileNumber: e.target.value })}
                 />
               </div>
             </>
@@ -130,9 +131,8 @@ const Login = ({ onLoginSuccess }) => {
               placeholder="Email"
               className="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-orange-400"
               value={formData.Email}
-              onChange={(e) =>
-                setFormData({ ...formData, Email: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, Email: e.target.value })}
+              required
             />
           </div>
 
@@ -143,25 +143,21 @@ const Login = ({ onLoginSuccess }) => {
               placeholder="Password"
               className="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-orange-400"
               value={formData.Password}
-              onChange={(e) =>
-                setFormData({ ...formData, Password: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, Password: e.target.value })}
+              required
             />
           </div>
 
           {isRegister && (
             <div className="mb-3">
-              <label className="text-sm font-medium text-gray-700">
-                Confirm Password
-              </label>
+              <label className="text-sm font-medium text-gray-700">Confirm Password</label>
               <input
                 type="password"
                 placeholder="Confirm Password"
                 className="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-orange-400"
                 value={formData.ConfirmPassword}
-                onChange={(e) =>
-                  setFormData({ ...formData, ConfirmPassword: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, ConfirmPassword: e.target.value })}
+                required
               />
             </div>
           )}

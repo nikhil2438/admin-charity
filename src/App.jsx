@@ -6,7 +6,7 @@ import DonationHistory from './components/DonationHistory';
 import TopDonors from './components/TopDonors';
 import Event from './components/Event';
 import Login from './components/Login';
-
+import Profile from './components/Profile';
 import Sidebar from './components/Sidebar';
 import Topbar from './components/Topbar';    
 
@@ -29,6 +29,19 @@ const App = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  // Helper to wrap authenticated routes with layout
+  const AuthenticatedLayout = ({ children }) => (
+    <div className="flex min-h-screen flex-col">
+      <Topbar toggleSidebar={toggleSidebar} />
+      <div className="flex flex-1">
+        <Sidebar isOpen={isSidebarOpen} />
+        <div className={`flex-1 p-6 space-y-8 bg-gray-50 ${isSidebarOpen ? 'ml-64' : ''}`}>
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <Router>
       <Routes>
@@ -42,34 +55,20 @@ const App = () => {
         />
         <Route
           path="/dashboard"
-          element={
-            isAuthenticated ? (
-              <div className="flex min-h-screen flex-col">
-                <Topbar toggleSidebar={toggleSidebar} /> 
-                <div className="flex flex-1">
-                  <Sidebar isOpen={isSidebarOpen} />
-                  <div className={`flex-1 p-6 space-y-8 bg-gray-50 ${isSidebarOpen ? 'ml-64' : ''}`}>
-                    <Dashboard />
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
+          element={isAuthenticated ? (
+            <AuthenticatedLayout>
+              <Dashboard />
+            </AuthenticatedLayout>
+          ) : (
+            <Navigate to="/login" />
+          )}
         />
         <Route
           path="/donation-history"
           element={isAuthenticated ? (
-            <div className="flex min-h-screen flex-col">
-              <Topbar toggleSidebar={toggleSidebar} />
-              <div className="flex flex-1">
-                <Sidebar isOpen={isSidebarOpen} />
-                <div className={`flex-1 p-6 space-y-8 bg-gray-50 ${isSidebarOpen ? 'ml-64' : ''}`}>
-                  <DonationHistory />
-                </div>
-              </div>
-            </div>
+            <AuthenticatedLayout>
+              <DonationHistory />
+            </AuthenticatedLayout>
           ) : (
             <Navigate to="/login" />
           )}
@@ -77,15 +76,9 @@ const App = () => {
         <Route
           path="/top-donors"
           element={isAuthenticated ? (
-            <div className="flex min-h-screen flex-col">
-              <Topbar toggleSidebar={toggleSidebar} />
-              <div className="flex flex-1">
-                <Sidebar isOpen={isSidebarOpen} />
-                <div className={`flex-1 p-6 space-y-8 bg-gray-50 ${isSidebarOpen ? 'ml-64' : ''}`}>
-                  <TopDonors />
-                </div>
-              </div>
-            </div>
+            <AuthenticatedLayout>
+              <TopDonors />
+            </AuthenticatedLayout>
           ) : (
             <Navigate to="/login" />
           )}
@@ -93,15 +86,20 @@ const App = () => {
         <Route
           path="/event"
           element={isAuthenticated ? (
-            <div className="flex min-h-screen flex-col">
-              <Topbar toggleSidebar={toggleSidebar} />
-              <div className="flex flex-1">
-                <Sidebar isOpen={isSidebarOpen} />
-                <div className={`flex-1 p-6 space-y-8 bg-gray-50 ${isSidebarOpen ? 'ml-64' : ''}`}>
-                  <Event />
-                </div>
-              </div>
-            </div>
+            <AuthenticatedLayout>
+              <Event />
+            </AuthenticatedLayout>
+          ) : (
+            <Navigate to="/login" />
+          )}
+        />
+        {/* New Profile route */}
+        <Route
+          path="/profile"
+          element={isAuthenticated ? (
+            <AuthenticatedLayout>
+              <Profile />
+            </AuthenticatedLayout>
           ) : (
             <Navigate to="/login" />
           )}

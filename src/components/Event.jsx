@@ -7,10 +7,9 @@ const Events = () => {
     description: "",
     date: "",
     location: "",
-    image: "",
   });
+  const [imageFile, setImageFile] = useState(null);
 
-  
   useEffect(() => {
     fetch("http://localhost:5000/api/events")
       .then((res) => res.json())
@@ -23,27 +22,39 @@ const Events = () => {
     setNewEvent((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleFileChange = (e) => {
+    setImageFile(e.target.files[0]);
+  };
+
   const handleAddEvent = async (e) => {
     e.preventDefault();
+
     try {
+      const formData = new FormData();
+      formData.append("title", newEvent.title);
+      formData.append("description", newEvent.description);
+      formData.append("date", newEvent.date);
+      formData.append("location", newEvent.location);
+
+      if (imageFile) {
+        formData.append("image", imageFile);
+      }
+
       const res = await fetch("http://localhost:5000/api/events", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newEvent),
+        body: formData, 
       });
+
+      if (!res.ok) {
+        throw new Error("Failed to add event");
+      }
 
       const addedEvent = await res.json();
 
       setEvents((prev) => [...prev, addedEvent]);
-      setNewEvent({
-        title: "",
-        description: "",
-        date: "",
-        location: "",
-        image: "",
-      });
+
+      setNewEvent({ title: "", description: "", date: "", location: "" });
+      setImageFile(null);
     } catch (error) {
       console.error("Failed to add event:", error);
     }
@@ -62,7 +73,11 @@ const Events = () => {
             📝 {event.description}
             {event.image && (
               <div className="mt-2">
-                <img src={event.image} alt={event.title} className="h-40 w-auto rounded-md" />
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  className="h-40 w-auto rounded-md"
+                />
               </div>
             )}
           </li>
@@ -105,11 +120,9 @@ const Events = () => {
           required
         />
         <input
-          type="text"
-          name="image"
-          placeholder="Image URL"
-          value={newEvent.image}
-          onChange={handleChange}
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
           className="w-full p-2 border rounded-md"
         />
         <button
@@ -124,3 +137,4 @@ const Events = () => {
 };
 
 export default Events;
+ 

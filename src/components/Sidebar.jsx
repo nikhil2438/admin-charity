@@ -8,12 +8,12 @@ const Sidebar = () => {
   const toggleSidebar = () => setIsOpen(!isOpen);
 
   const handleLinkClick = () => {
-    setIsOpen(false); // Close sidebar on link click (mobile)
+    setIsOpen(false); 
   };
 
   return (
     <>
-      {/* Mobile Toggle Button */}
+    
       <button
         onClick={toggleSidebar}
         className="md:hidden fixed left-4 top-4 z-50 flex flex-col justify-between w-8 h-6 p-1 bg-red-800 rounded"
@@ -34,7 +34,7 @@ const Sidebar = () => {
         ></span>
       </button>
 
-      {/* Sidebar */}
+    
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-red-800 text-white p-4 transform transition-transform duration-300 z-40 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
@@ -42,7 +42,7 @@ const Sidebar = () => {
       >
         <h1 className="text-2xl font-bold mb-8">Maa Siddheshwari Trust</h1>
         <ul className="space-y-4">
-          {/* Dashboard Link */}
+          
           <li>
             <Link
               to="/"
@@ -54,7 +54,7 @@ const Sidebar = () => {
               Dashboard
             </Link>
           </li>
-          {/* Event Link */}
+      
           <li>
             <Link
               to="/event"
@@ -66,7 +66,7 @@ const Sidebar = () => {
               Events
             </Link>
           </li>
-          {/* Donation History Link */}
+          
           <li>
             <Link
               to="/donation-history"
@@ -81,7 +81,7 @@ const Sidebar = () => {
         </ul>
       </div>
 
-      {/* Overlay on Mobile */}
+    
       {isOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50 z-30 md:hidden"
