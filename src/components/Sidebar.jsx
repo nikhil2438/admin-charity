@@ -78,6 +78,20 @@ const Sidebar = () => {
               Donation History
             </Link>
           </li>
+
+          
+  <li>
+  <Link
+    to="/admin-fundraisers"
+    onClick={handleLinkClick}
+    className={`block py-2 px-4 rounded-md ${
+      location.pathname === '/admin-fundraisers' ? 'bg-gray-700' : 'hover:bg-gray-700'
+    }`}
+  >
+    AdminFundraiser
+  </Link>
+</li>
+
         </ul>
       </div>
 

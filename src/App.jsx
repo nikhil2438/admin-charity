@@ -9,7 +9,7 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import Sidebar from './components/Sidebar';
 import Topbar from './components/Topbar';    
-
+import AdminFundraisers from './components/AdminFundraisers';
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
@@ -103,7 +103,18 @@ const App = () => {
           ) : (
             <Navigate to="/login" />
           )}
-        />
+/>
+    <Route      
+   path="/admin-fundraisers"
+  element={isAuthenticated ? (
+    <AuthenticatedLayout>
+      <AdminFundraisers />
+    </AuthenticatedLayout>
+  ) : (
+    <Navigate to="/login" />
+  )}
+/>
+      
       </Routes>
     </Router>
   );
