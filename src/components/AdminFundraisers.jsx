@@ -22,7 +22,7 @@ const AdminFundraisers = () => {
     fetchFundraisers();
   }, []);
 
-  // Update fundraiser status
+  
   const updateStatus = async (id, status) => {
     setUpdatingId(id);
     try {
