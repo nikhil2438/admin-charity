@@ -5,7 +5,7 @@ const AdminFundraisers = () => {
   const [loading, setLoading] = useState(true);
   const [updatingId, setUpdatingId] = useState(null);
 
-  // Fetch fundraisers
+  
   const fetchFundraisers = async () => {
     try {
       const res = await fetch("http://localhost:5000/api/fundraisers");

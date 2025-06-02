@@ -59,19 +59,19 @@ const Dashboard = () => {
   return (
     <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Total Donations */}
+        
         <div className="bg-white rounded-2xl shadow-md p-4">
           <div className="text-gray-500 text-sm">Total Donations</div>
           <div className="text-2xl font-bold">₹{summary.totalAmount.toLocaleString()}</div>
         </div>
 
-        {/* Total Donors */}
+        
         <div className="bg-white rounded-2xl shadow-md p-4">
           <div className="text-gray-500 text-sm">Total Donors</div>
           <div className="text-2xl font-bold">{summary.totalDonors}</div>
         </div>
 
-        {/* Dynamic Category Totals */}
+        
         {summary.categoryTotals && Object.keys(summary.categoryTotals).length > 0 ? (
           Object.entries(summary.categoryTotals).map(([category, amount], index) => (
             <div key={index} className="bg-white rounded-2xl shadow-md p-4">
@@ -86,12 +86,12 @@ const Dashboard = () => {
         )}
       </div>
 
-      {/* Events */}
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Event />
       </div>
 
-      {/* Donation History */}
+    
       <DonationHistory />
     </div>
   );

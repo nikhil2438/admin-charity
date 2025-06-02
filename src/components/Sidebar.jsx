@@ -92,6 +92,19 @@ const Sidebar = () => {
   </Link>
 </li>
 
+<li>
+  <Link
+    to="/fundrelease-admin"
+    onClick={handleLinkClick}
+    className={`block py-2 px-4 rounded-md ${
+      location.pathname === '/admin-fundraisers' ? 'bg-gray-700' : 'hover:bg-gray-700'
+    }`}
+  >
+    FundReleaseAdmin
+  </Link>
+</li>
+
+
         </ul>
       </div>
 

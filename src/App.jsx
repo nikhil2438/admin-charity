@@ -9,7 +9,8 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import Sidebar from './components/Sidebar';
 import Topbar from './components/Topbar';    
-import AdminFundraisers from './components/AdminFundraisers';
+import AdminFundraisers from './components/AdminFundraisers'
+import FundReleaseAdmin from './components/FundReleaseAdmin';
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
@@ -109,6 +110,17 @@ const App = () => {
   element={isAuthenticated ? (
     <AuthenticatedLayout>
       <AdminFundraisers />
+    </AuthenticatedLayout>
+  ) : (
+    <Navigate to="/login" />
+  )}
+/>
+
+<Route      
+   path="/fundrelease-admin"
+  element={isAuthenticated ? (
+    <AuthenticatedLayout>
+      <FundReleaseAdmin />
     </AuthenticatedLayout>
   ) : (
     <Navigate to="/login" />
