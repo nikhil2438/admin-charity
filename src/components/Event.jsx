@@ -64,25 +64,36 @@ const Events = () => {
     <div className="bg-white rounded-2xl shadow-md p-4 mb-6">
       <h2 className="text-lg font-semibold mb-4 text-gray-700">Upcoming Events</h2>
 
-      <ul className="space-y-2 mb-6">
-        {events.map((event) => (
-          <li key={event._id} className="text-gray-600">
-            📅 <strong>{event.title}</strong> —{" "}
-            {new Date(event.date).toLocaleDateString()} <br />
-            📍 {event.location} <br />
-            📝 {event.description}
-            {event.image && (
-              <div className="mt-2">
-                <img
-                  src={event.image}
-                  alt={event.title}
-                  className="h-40 w-auto rounded-md"
-                />
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
+      <div className="space-y-4 mb-6">
+  {events.map((event) => (
+    <div
+      key={event._id}
+      className="flex flex-col md:flex-row items-center md:items-start gap-6 border border-gray-200 p-4 rounded-xl shadow hover:shadow-md transition duration-300"
+    >
+      {event.image && (
+        <img
+          src={event.image}
+          alt={event.title}
+          className="w-full md:w-48 h-36 object-cover rounded-lg"
+        />
+      )}
+      <div className="text-left flex-1">
+        <h3 className="text-lg font-bold text-gray-800 mb-1">{event.title}</h3>
+        <p className="text-sm text-gray-600 mb-1">
+          📅 <span className="font-medium">Date:</span>{" "}
+          {new Date(event.date).toLocaleDateString()}
+        </p>
+        <p className="text-sm text-gray-600 mb-1">
+          📍 <span className="font-medium">Location:</span> {event.location}
+        </p>
+        <p className="text-sm text-gray-600">
+          📝 <span className="font-medium">Description:</span>{" "}
+          {event.description}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
 
       <form onSubmit={handleAddEvent} className="space-y-2">
         <input
