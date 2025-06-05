@@ -8,8 +8,9 @@ const TopBar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('user');  
-    navigate('/login');               
+    localStorage.removeItem('user');  // Clear user info
+    navigate('/login');               // Redirect to login
+    window.location.reload();         // Force full reload to reset state
   };
 
   return (
@@ -77,4 +78,3 @@ const TopBar = () => {
 };
 
 export default TopBar;
- 
