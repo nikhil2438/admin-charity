@@ -8,13 +8,13 @@ import Event from './components/Event';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import Sidebar from './components/Sidebar';
-import Topbar from './components/Topbar';    
+// import Topbar from './components/Topbar';    
 import AdminFundraisers from './components/AdminFundraisers';
 import FundReleaseAdmin from './components/FundReleaseAdmin';
 
 const AuthenticatedLayout = ({ children, toggleSidebar, isSidebarOpen }) => (
   <div className="flex min-h-screen flex-col">
-    <Topbar toggleSidebar={toggleSidebar} />
+    {/* <Topbar toggleSidebar={toggleSidebar} /> */}
     <div className="flex flex-1">
       <Sidebar isOpen={isSidebarOpen} />
       <div className={`flex-1 p-6 bg-gray-50 ${isSidebarOpen ? 'ml-64' : ''}`}>
