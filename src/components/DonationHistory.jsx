@@ -19,7 +19,7 @@ const DonationHistory = () => {
             name: entry.FullName,
             email: entry.ContactNumber,
             amountValue: entry.amount,
-amount: `₹${(entry.amount / 100).toLocaleString()}`,
+amount: `₹${Number(entry.amount).toLocaleString()}`,
             category: entry.category || 'General',
             date: new Date(entry.donation.createdAt),
             dateString: new Date(entry.donation.createdAt).toLocaleDateString('en-IN', {
