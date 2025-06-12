@@ -58,42 +58,44 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        
-        <div className="bg-white rounded-2xl shadow-md p-4">
-          <div className="text-gray-500 text-sm">Total Donations</div>
-          <div className="text-2xl font-bold">₹{summary.totalAmount.toLocaleString()}</div>
-        </div>
+  
+  <div className="px-4 py-6 space-y-8 bg-gray-50 min-h-screen overflow-x-hidden">
+  
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="bg-white rounded-2xl shadow-md p-4 w-full">
+        <div className="text-gray-500 text-sm">Total Donations</div>
+        <div className="text-2xl font-bold break-words">₹{summary.totalAmount.toLocaleString()}</div>
+      </div>
 
-        
-        <div className="bg-white rounded-2xl shadow-md p-4">
-          <div className="text-gray-500 text-sm">Total Donors</div>
-          <div className="text-2xl font-bold">{summary.totalDonors}</div>
-        </div>
+      <div className="bg-white rounded-2xl shadow-md p-4 w-full">
+        <div className="text-gray-500 text-sm">Total Donors</div>
+        <div className="text-2xl font-bold break-words">{summary.totalDonors}</div>
+      </div>
 
-        
-        {summary.categoryTotals && Object.keys(summary.categoryTotals).length > 0 ? (
-          Object.entries(summary.categoryTotals).map(([category, amount], index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-md p-4">
-              <div className="text-gray-500 text-sm">{category}</div>
-              <div className="text-2xl font-bold">₹{amount.toLocaleString()}</div>
-            </div>
-          ))
-        ) : (
-          <div className="col-span-full text-center text-gray-500">
-            No category donation data available.
+      {summary.categoryTotals && Object.keys(summary.categoryTotals).length > 0 ? (
+        Object.entries(summary.categoryTotals).map(([category, amount], index) => (
+          <div key={index} className="bg-white rounded-2xl shadow-md p-4 w-full">
+            <div className="text-gray-500 text-sm break-words">{category}</div>
+            <div className="text-2xl font-bold break-words">₹{amount.toLocaleString()}</div>
           </div>
-        )}
-      </div>
-
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Event />
-      </div>
+        ))
+      ) : (
+        <div className="col-span-full text-center text-gray-500">
+          No category donation data available.
+        </div>
+      )}
+    </div>
 
     
-      <DonationHistory />
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <Event />
+    </div>
+
+    
+    <DonationHistory />
+  
+
+
     </div>
   );
 };
