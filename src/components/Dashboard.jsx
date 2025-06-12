@@ -12,12 +12,13 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/donations/summary') 
+    fetch('https://charity-backend-uj5e.onrender.com/api/donations/summary') 
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         return res.json();
+        
       })
       .then(data => {
         setSummary(data);

@@ -10,7 +10,7 @@ const DonationHistory = () => {
   useEffect(() => {
     const fetchDonationHistory = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/razorpay/donation-history');
+        const response = await fetch('https://charity-backend-uj5e.onrender.com/api/razorpay/donation-history');
         const data = await response.json();
 
         const formattedData = data

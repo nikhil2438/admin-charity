@@ -11,7 +11,7 @@ const Events = () => {
   const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/events")
+    fetch("https://charity-backend-uj5e.onrender.com/api/events")
       .then((res) => res.json())
       .then((data) => setEvents(data))
       .catch((err) => console.error("Error fetching events:", err));
@@ -40,7 +40,7 @@ const Events = () => {
         formData.append("image", imageFile);
       }
 
-      const res = await fetch("http://localhost:5000/api/events", {
+      const res = await fetch("https://charity-backend-uj5e.onrender.com/api/events", {
         method: "POST",
         body: formData, 
       });

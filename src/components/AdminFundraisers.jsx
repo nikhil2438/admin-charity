@@ -8,7 +8,7 @@ const AdminFundraisers = () => {
   
   const fetchFundraisers = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/fundraisers");
+      const res = await fetch("https://charity-backend-uj5e.onrender.com/api/fundraisers");
       const data = await res.json();
       setFundraisers(data);
       setLoading(false);
@@ -26,7 +26,7 @@ const AdminFundraisers = () => {
   const updateStatus = async (id, status) => {
     setUpdatingId(id);
     try {
-      const res = await fetch(`http://localhost:5000/api/fundraisers/${id}`, {
+      const res = await fetch(`https://charity-backend-uj5e.onrender.com/api/fundraisers/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status }),

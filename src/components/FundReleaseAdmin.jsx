@@ -11,7 +11,7 @@ const FundReleaseAdmin = () => {
 
   const fetchFundraisers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/fundraisers/release-status");
+      const res = await axios.get("https://charity-backend-uj5e.onrender.com/api/fundraisers/release-status");
        console.log("Fundraisers fetched:", res.data); 
       setFundraisers(res.data);
       setLoading(false);
@@ -23,7 +23,7 @@ const FundReleaseAdmin = () => {
 
   const requestVerification = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/fundraisers/request-release/${id}`);
+      await axios.put(`https://charity-backend-uj5e.onrender.com/api/fundraisers/request-release/${id}`);
       alert("Release requested, waiting for verification.");
       setFundraisers((prev) =>
         prev.map((f) => (f._id === id ? { ...f, isReleaseRequested: true } : f))
@@ -35,7 +35,7 @@ const FundReleaseAdmin = () => {
 
   const releaseFunds = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/fundraisers/release/${id}`);
+      await axios.put(`https://charity-backend-uj5e.onrender.com/api/fundraisers/release/${id}`);
       alert("Funds released successfully.");
       setFundraisers((prev) =>
         prev.map((f) =>

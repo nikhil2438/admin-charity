@@ -19,7 +19,7 @@ const Profile = () => {
           return;
         }
 
-        const response = await axios.post("http://localhost:5000/api/user/profile", {
+        const response = await axios.post("https://charity-backend-uj5e.onrender.com/api/user/profile", {
           email: email.toLowerCase(),
         });
 
