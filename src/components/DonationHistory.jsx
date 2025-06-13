@@ -59,10 +59,10 @@ amount: `₹${Number(entry.amount).toLocaleString()}`,
 
   return (
     <div className="bg-white rounded-2xl shadow-md sm:p-5">
-      <h2 className="text-lg font-semibold mb-4 text-gray-700">Donation History</h2>
+      <h2 className="text-lg font-semibold mb-4  text-gray-700">Donation History</h2>
 
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 ">
         <input
           type="text"
           placeholder="Search by name, contact, or category"
@@ -77,7 +77,7 @@ amount: `₹${Number(entry.amount).toLocaleString()}`,
           className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
         >
           {categories.map((cat, idx) => (
-            <option key={idx} value={cat}>
+            <option key={idx} value={cat}> 
               {cat}
             </option>
           ))}

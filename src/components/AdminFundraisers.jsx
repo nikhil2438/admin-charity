@@ -94,12 +94,16 @@ const AdminFundraisers = () => {
                 <button
                   onClick={() => updateStatus(item._id, "approved")}
                   disabled={updatingId === item._id || item.status === "approved"}
-                  className={`flex-1 px-4  rounded text-white text-sm ${
-                    item.status === "approved"
-                      ? "bg-green-400 cursor-not-allowed"
-                      : "bg-green-600 hover:bg-green-700"
-                  }`}
-                >
+                  
+  className={`inline-flex items-center justify-center px-3 py-1 text-sm rounded text-white
+  lg:px-2 lg:py-1 lg:text-[12px]
+  ${
+    item.status === "approved"
+      ? "bg-green-400 cursor-not-allowed"
+      : "bg-green-600 hover:bg-green-700"
+  }`}
+  >
+                
                   {updatingId === item._id && item.status !== "approved"
                     ? "Updating..."
                     : "Accept"}
@@ -107,13 +111,14 @@ const AdminFundraisers = () => {
                 <button
                   onClick={() => updateStatus(item._id, "rejected")}
                   disabled={updatingId === item._id || item.status === "rejected"}
-                  className={`flex-1 px-2 py-1 rounded text-white text-sm 
-                     md:px-2 md:py-0.5 md:text-xs 
-                     ${
-                    item.status === "rejected"
-                      ? "bg-red-400 cursor-not-allowed"
-                      : "bg-red-600 hover:bg-red-700"
-                  }`}
+   className={`inline-flex items-center justify-center px-3 py-1 text-sm rounded text-white
+  lg:px-2 lg:py-1 lg:text-[12px]
+  ${
+    item.status === "rejected"
+      ? "bg-red-400 cursor-not-allowed"
+      : "bg-red-600 hover:bg-red-700"
+  }`}
+
                 >
                   {updatingId === item._id && item.status !== "rejected"
                     ? "Updating..."

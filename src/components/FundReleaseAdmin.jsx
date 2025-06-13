@@ -1,4 +1,4 @@
-// 
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -64,7 +64,7 @@ const FundReleaseAdmin = () => {
         key={f._id}
         className="flex flex-col md:flex-row justify-between md:items-center bg-gray-50 border border-gray-200 p-4 rounded-lg mb-4 shadow-sm"
       >
-        {/* Fundraiser Info */}
+        
         <div className="mb-4 md:mb-0">
           <h3 className="font-semibold text-lg text-gray-800">{f.name}</h3>
           <p className="text-sm text-gray-700">
@@ -83,7 +83,7 @@ const FundReleaseAdmin = () => {
           </p>
         </div>
 
-        {/* Action Buttons */}
+  
         <div className="flex flex-wrap gap-2 md:justify-end">
           {!f.isReleaseRequested && !f.isFundsReleased && (
             <button
