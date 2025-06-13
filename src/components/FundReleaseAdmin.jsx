@@ -1,3 +1,4 @@
+// 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -50,57 +51,69 @@ const FundReleaseAdmin = () => {
   if (loading) return <p>Loading fundraisers...</p>;
 
   return (
-    <div className="p-6 bg-white shadow rounded-lg max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold mb-6 text-red-600">Fund Release Management</h2>
-      {fundraisers.length === 0 ? (
-        <p className="text-gray-600">No fundraisers available.</p>
-      ) : (
-        fundraisers.map((f) => (
-          <div
-            key={f._id}
-            className="flex justify-between items-center bg-gray-100 p-4 rounded mb-4"
-          >
-            <div>
-              <h3 className="font-semibold text-lg">{f.name}</h3>
-              <p className="text-sm text-gray-700">Cause: {f.cause}</p>
-              <p className="text-sm text-gray-700">Amount: ₹{f.amount}</p>
-              <p className="text-sm">
-                Status:{" "}
-                {f.isFundsReleased
-                  ? "Funds Released"
-                  : f.isReleaseRequested
-                  ? "Pending Verification"
-                  : "No Release Requested"}
-              </p>
-            </div>
+    <div className="p-6 bg-white shadow-md rounded-xl max-w-4xl mx-auto w-full">
+  <h2 className="text-2xl md:text-3xl font-bold mb-6 text-red-600 text-center md:text-left">
+    Fund Release Management
+  </h2>
 
-            <div className="space-x-2">
-              {!f.isReleaseRequested && !f.isFundsReleased && (
-                <button
-                  onClick={() => requestVerification(f._id)}
-                  className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
-                >
-                  Request Verification
-                </button>
-              )}
+  {fundraisers.length === 0 ? (
+    <p className="text-gray-600 text-center">No fundraisers available.</p>
+  ) : (
+    fundraisers.map((f) => (
+      <div
+        key={f._id}
+        className="flex flex-col md:flex-row justify-between md:items-center bg-gray-50 border border-gray-200 p-4 rounded-lg mb-4 shadow-sm"
+      >
+        {/* Fundraiser Info */}
+        <div className="mb-4 md:mb-0">
+          <h3 className="font-semibold text-lg text-gray-800">{f.name}</h3>
+          <p className="text-sm text-gray-700">
+            <span className="font-medium">Cause:</span> {f.cause}
+          </p>
+          <p className="text-sm text-gray-700">
+            <span className="font-medium">Amount:</span> ₹{f.amount}
+          </p>
+          <p className="text-sm text-gray-700">
+            <span className="font-medium">Status:</span>{" "}
+            {f.isFundsReleased
+              ? "✅ Funds Released"
+              : f.isReleaseRequested
+              ? "⏳ Pending Verification"
+              : "❌ No Release Requested"}
+          </p>
+        </div>
 
-              {f.isReleaseRequested && !f.isFundsReleased && (
-                <button
-                  onClick={() => releaseFunds(f._id)}
-                  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                >
-                  Release Funds
-                </button>
-              )}
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-2 md:justify-end">
+          {!f.isReleaseRequested && !f.isFundsReleased && (
+            <button
+              onClick={() => requestVerification(f._id)}
+              className="bg-yellow-500 text-white text-sm font-medium px-4 py-2 rounded hover:bg-yellow-600 transition"
+            >
+              Request Verification
+            </button>
+          )}
 
-              {f.isFundsReleased && (
-                <span className="text-green-700 font-semibold">Funds Released ✔️</span>
-              )}
-            </div>
-          </div>
-        ))
-      )}
-    </div>
+          {f.isReleaseRequested && !f.isFundsReleased && (
+            <button
+              onClick={() => releaseFunds(f._id)}
+              className="bg-green-600 text-white text-sm font-medium px-4 py-2 rounded hover:bg-green-700 transition"
+            >
+              Release Funds
+            </button>
+          )}
+
+          {f.isFundsReleased && (
+            <span className="text-green-700 font-semibold text-sm">
+              Funds Released ✔️
+            </span>
+          )}
+        </div>
+      </div>
+    ))
+  )}
+</div>
+
   );
 };
 

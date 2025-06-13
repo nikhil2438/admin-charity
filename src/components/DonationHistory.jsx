@@ -1,3 +1,4 @@
+// 
 import React, { useEffect, useState } from 'react';
 
 const DonationHistory = () => {
@@ -57,7 +58,7 @@ amount: `₹${Number(entry.amount).toLocaleString()}`,
   });
 
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6">
+    <div className="bg-white rounded-2xl shadow-md sm:p-5">
       <h2 className="text-lg font-semibold mb-4 text-gray-700">Donation History</h2>
 
 
@@ -136,4 +137,5 @@ amount: `₹${Number(entry.amount).toLocaleString()}`,
 };
 
 export default DonationHistory;
+
 

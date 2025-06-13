@@ -57,7 +57,7 @@ const Login = ({ onLoginSuccess }) => {
       }
     } else {
       try {
-        const res = await fetch("https://charity-backend-uj5e.onrender.com/api/login", {
+        const res = await fetch("http://localhost:5000/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

@@ -5,7 +5,6 @@ const AdminFundraisers = () => {
   const [loading, setLoading] = useState(true);
   const [updatingId, setUpdatingId] = useState(null);
 
-  
   const fetchFundraisers = async () => {
     try {
       const res = await fetch("https://charity-backend-uj5e.onrender.com/api/fundraisers");
@@ -22,7 +21,6 @@ const AdminFundraisers = () => {
     fetchFundraisers();
   }, []);
 
-  
   const updateStatus = async (id, status) => {
     setUpdatingId(id);
     try {
@@ -48,75 +46,82 @@ const AdminFundraisers = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Fundraiser Requests</h2>
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-4">Fundraiser Requests</h2>
+
       {loading ? (
         <p>Loading...</p>
       ) : fundraisers.length === 0 ? (
         <p>No fundraiser submissions yet.</p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-200 shadow-md rounded">
-            <thead>
-              <tr className="bg-gray-100 text-left">
-                <th className="py-2 px-4 border-b">Full Name</th>
-                <th className="py-2 px-4 border-b">Contact</th>
-                <th className="py-2 px-4 border-b">Email</th>
-                <th className="py-2 px-4 border-b">Cause</th>
-                <th className="py-2 px-4 border-b">Fund (₹)</th>
-                <th className="py-2 px-4 border-b">Status</th>
-                <th className="py-2 px-4 border-b">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {fundraisers.map((item) => (
-                <tr key={item._id} className="hover:bg-gray-50">
-                  <td className="py-2 px-4 border-b">{item.name}</td>
-                  <td className="py-2 px-4 border-b">{item.contact}</td>
-                  <td className="py-2 px-4 border-b">{item.email}</td>
-                  <td className="py-2 px-4 border-b">{item.cause}</td>
-                  <td className="py-2 px-4 border-b">{item.amount}</td>
-                  <td className="py-2 px-4 border-b">
-                    <span
-                      className={`px-2 py-1 rounded text-sm font-medium ${
-                        item.status === "approved"
-                          ? "bg-green-100 text-green-800"
-                          : item.status === "rejected"
-                          ? "bg-red-100 text-red-800"
-                          : "bg-yellow-100 text-yellow-800"
-                      }`}
-                    >
-                      {item.status}
-                    </span>
-                  </td>
-                  <td className="py-2 px-4 border-b space-x-2">
-                    <button
-                      onClick={() => updateStatus(item._id, "approved")}
-                      disabled={updatingId === item._id || item.status === "approved"}
-                      className={`px-3 py-1 rounded text-white text-sm ${
-                        item.status === "approved"
-                          ? "bg-green-400 cursor-not-allowed"
-                          : "bg-green-600 hover:bg-green-700"
-                      }`}
-                    >
-                      {updatingId === item._id && item.status !== "approved" ? "Updating..." : "Accept"}
-                    </button>
-                    <button
-                      onClick={() => updateStatus(item._id, "rejected")}
-                      disabled={updatingId === item._id || item.status === "rejected"}
-                      className={`px-3 py-1 rounded text-white text-sm ${
-                        item.status === "rejected"
-                          ? "bg-red-400 cursor-not-allowed"
-                          : "bg-red-600 hover:bg-red-700"
-                      }`}
-                    >
-                      {updatingId === item._id && item.status !== "rejected" ? "Updating..." : "Reject"}
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="space-y-4">
+          {fundraisers.map((item) => (
+            <div
+              key={item._id}
+              className="border rounded-lg shadow-sm p-4 bg-white"
+            >
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="font-semibold text-gray-800">{item.name}</h3>
+                <span
+                  className={`text-xs font-medium px-2 py-1 rounded ${
+                    item.status === "approved"
+                      ? "bg-green-100 text-green-800"
+                      : item.status === "rejected"
+                      ? "bg-red-100 text-red-800"
+                      : "bg-yellow-100 text-yellow-800"
+                  }`}
+                >
+                  {item.status}
+                </span>
+              </div>
+
+              <div className="text-sm text-gray-700 mb-2 space-y-1">
+                <p>
+                  <strong>Contact:</strong> {item.contact}
+                </p>
+                <p>
+                  <strong>Email:</strong> {item.email}
+                </p>
+                <p>
+                  <strong>Cause:</strong> {item.cause}
+                </p>
+                <p>
+                  <strong>Fund:</strong> ₹{item.amount}
+                </p>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={() => updateStatus(item._id, "approved")}
+                  disabled={updatingId === item._id || item.status === "approved"}
+                  className={`flex-1 px-4  rounded text-white text-sm ${
+                    item.status === "approved"
+                      ? "bg-green-400 cursor-not-allowed"
+                      : "bg-green-600 hover:bg-green-700"
+                  }`}
+                >
+                  {updatingId === item._id && item.status !== "approved"
+                    ? "Updating..."
+                    : "Accept"}
+                </button>
+                <button
+                  onClick={() => updateStatus(item._id, "rejected")}
+                  disabled={updatingId === item._id || item.status === "rejected"}
+                  className={`flex-1 px-2 py-1 rounded text-white text-sm 
+                     md:px-2 md:py-0.5 md:text-xs 
+                     ${
+                    item.status === "rejected"
+                      ? "bg-red-400 cursor-not-allowed"
+                      : "bg-red-600 hover:bg-red-700"
+                  }`}
+                >
+                  {updatingId === item._id && item.status !== "rejected"
+                    ? "Updating..."
+                    : "Reject"}
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
@@ -124,3 +129,4 @@ const AdminFundraisers = () => {
 };
 
 export default AdminFundraisers;
+ 

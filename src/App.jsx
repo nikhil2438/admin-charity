@@ -1,3 +1,4 @@
+// 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
@@ -13,11 +14,11 @@ import AdminFundraisers from './components/AdminFundraisers';
 import FundReleaseAdmin from './components/FundReleaseAdmin';
 
 const AuthenticatedLayout = ({ children, toggleSidebar, isSidebarOpen }) => (
-  <div className="flex min-h-screen flex-col">
+  <div className="flex min-h-screen flex-col overflow-x-auto">
     {/* <Topbar toggleSidebar={toggleSidebar} /> */}
     <div className="flex flex-1">
       <Sidebar isOpen={isSidebarOpen} />
-      <div className={`flex-1 p-6 bg-gray-50 ${isSidebarOpen ? 'ml-64' : ''}`}>
+      <div className={`flex-1  bg-gray-50 ${isSidebarOpen ? 'ml-64' : ''}`}>
         {children}
       </div>
     </div>
